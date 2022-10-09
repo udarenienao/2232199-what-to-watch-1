@@ -1,13 +1,13 @@
-import {SmallFilmCardProps} from './small-film-card-props';
+import {Film} from '../../types/film';
 
-function SmallFilmCard({src, alt, title}: SmallFilmCardProps): JSX.Element{
+function SmallFilmCard(film: Film): JSX.Element{
   return (
     <article className='small-film-card catalog__films-card'>
       <div className='small-film-card__image'>
-        <img src={src} alt={alt} width='280' height='175'/>
+        <img src={film.posterUrl} alt={film.title} width='280' height='175'/>
       </div>
       <h3 className='small-film-card__title'>
-        <a className='small-film-card__link' href='film-page.html'>{title}</a>
+        <a className='small-film-card__link' href='film-page.html'>{film.title}</a>
       </h3>
     </article>
   );
