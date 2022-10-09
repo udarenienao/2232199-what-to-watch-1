@@ -3,6 +3,7 @@ import React from 'react';
 import Footer from '../../components/footer/footer';
 import Catalog from '../../components/catalog/catalog';
 import {Film} from '../../types/film';
+import Logo from '../../components/logo/logo';
 
 
 type MoviePageProps = {
@@ -21,13 +22,7 @@ function MoviePage({ moviePageFilms }: MoviePageProps): JSX.Element{
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+            <Logo/>
 
             <ul className="user-block">
               <li className="user-block__item">
