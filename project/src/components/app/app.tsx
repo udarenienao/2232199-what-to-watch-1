@@ -10,6 +10,7 @@ import Player from '../../pages/player/player';
 import AddReview from '../../pages/add-review/add-review';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
+import Layout from '../layout/layout';
 
 
 type AppProps = {
@@ -21,17 +22,22 @@ function App({ promoMovie, films }: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Main promoMovie={promoMovie} films={films} />} />
-        <Route path='login' element={<SignIn/>}/>
-        <Route path='mylist' element={
-          <PrivateRoute hasAccess={false}>
-            <MyList myFilms={films.slice(0,9)}/>
-          </PrivateRoute>}
-        />
-        <Route path='films/:id' element={<MoviePage moviePageFilms={films.slice(0,4)}/>}/>
-        <Route path='player/:id' element={<Player/>}/>
-        <Route path='films/:id/review' element={<AddReview/>}/>
-        <Route path='*' element={<NotFound/>}/>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Main promoMovie={promoMovie} films={films} />} />
+          <Route path='login' element={<SignIn/>}/>
+          <Route
+            path='mylist'
+            element={
+              <PrivateRoute hasAccess={false}>
+                <MyList myFilms={films.slice(0,9)}/>
+              </PrivateRoute>
+            }
+          />
+          <Route path='films/:id' element={<MoviePage moviePageFilms={films.slice(0,4)}/>}/>
+          <Route path='player/:id' element={<Player/>}/>
+          <Route path='films/:id/review' element={<AddReview/>}/>
+          <Route path='*' element={<NotFound/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>);
 }
