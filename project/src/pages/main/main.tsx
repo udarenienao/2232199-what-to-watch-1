@@ -4,8 +4,9 @@ import Footer from '../../components/footer/footer';
 import {PromoMovie} from '../../types/promo-movie';
 import {Film} from '../../types/film';
 import Catalog from '../../components/catalog/catalog';
+import Logo from '../../components/logo/logo';
 
-type MainProps =  {
+type MainProps = {
     promoMovie: PromoMovie;
     films: Film[];
 }
@@ -21,13 +22,7 @@ function Main({ promoMovie, films } : MainProps): JSX.Element{
         <h1 className='visually-hidden'>WTW</h1>
 
         <header className='page-header film-card__head'>
-          <div className='logo'>
-            <a className='logo__link'>
-              <span className='logo__letter logo__letter--1'>W</span>
-              <span className='logo__letter logo__letter--2'>T</span>
-              <span className='logo__letter logo__letter--3'>W</span>
-            </a>
-          </div>
+          <Logo/>
 
           <ul className='user-block'>
             <li className='user-block__item'>
