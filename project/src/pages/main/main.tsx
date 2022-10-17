@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Footer from '../../components/footer/footer';
-import {PromoMovie} from '../../types/promo-movie';
 import {Film} from '../../types/film';
 import Catalog from '../../components/catalog/catalog';
 import Logo from '../../components/logo/logo';
+import {Link} from 'react-router-dom';
 
 type MainProps = {
-    promoMovie: PromoMovie;
+    promoMovie: Film;
     films: Film[];
 }
 
@@ -31,7 +31,7 @@ function Main({ promoMovie, films } : MainProps): JSX.Element{
               </div>
             </li>
             <li className='user-block__item'>
-              <a className='user-block__link'>Sign out</a>
+              <Link to='/login' className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -52,19 +52,27 @@ function Main({ promoMovie, films } : MainProps): JSX.Element{
               </p>
 
               <div className='film-card__buttons'>
-                <button className='btn btn--play film-card__button' type='button'>
-                  <svg viewBox='0 0 19 19' width='19' height='19'>
-                    <use xlinkHref='#play-s'></use>
+                <Link
+                  to={`/player/${promoMovie.id}`}
+                  className='btn btn--play film-card__button'
+                  type='button'
+                >
+                  <svg viewBox="0 0 19 19" width="19" height="19">
+                    <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className='btn btn--list film-card__button' type='button'>
-                  <svg viewBox='0 0 19 20' width='19' height='20'>
-                    <use xlinkHref='#add'></use>
+                </Link>
+                <Link
+                  className='btn btn--list film-card__button'
+                  type='button'
+                  to={'/mylist'}
+                >
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className='film-card__count'>9</span>
-                </button>
+                  <span className="film-card__count">9</span>
+                </Link>
               </div>
             </div>
           </div>

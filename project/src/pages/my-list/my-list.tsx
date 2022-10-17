@@ -3,6 +3,7 @@ import Footer from '../../components/footer/footer';
 import Catalog from '../../components/catalog/catalog';
 import {Film} from '../../types/film';
 import Logo from '../../components/logo/logo';
+import {Link} from 'react-router-dom';
 
 
 type MyListProps ={
@@ -23,7 +24,7 @@ function MyList({myFilms}: MyListProps): JSX.Element{
             </div>
           </li>
           <li className='user-block__item'>
-            <a className='user-block__link'>Sign out</a>
+            <Link to='/login' className="user-block__link">Sign out</Link>
           </li>
         </ul>
       </header>

@@ -1,11 +1,26 @@
 import React from 'react';
+import {Film} from '../../types/film';
+import {Link, useParams} from 'react-router-dom';
+import NotFound from '../not-found/not-found';
 
-function Player(): JSX.Element{
+type PlayerProps ={
+  films: Film[];
+};
+
+function Player({films}: PlayerProps): JSX.Element{
+
+  const id = Number(useParams().id);
+  const film = films.find((currentFilm) => currentFilm.id === id);
+
+  if (!film) {
+    return <NotFound/>;
+  }
+
   return (
     <div className='player'>
-      <video src='#' className='player__video' poster='img/player-poster.jpg'></video>
+      <video src={film.videoUrl} className='player__video' poster={film.backgroundUrl}></video>
 
-      <button type='button' className='player__exit'>Exit</button>
+      <Link to={`/films/${id}`} type='button' className='player__exit'>Exit</Link>
 
       <div className='player__controls'>
         <div className='player__controls-row'>
@@ -13,7 +28,7 @@ function Player(): JSX.Element{
             <progress className='player__progress' value='30' max='100'></progress>
             <div className='player__toggler' style={{left: '30%'}}>Toggler</div>
           </div>
-          <div className='player__time-value'>1:30:29</div>
+          <div className='player__time-value'>{film.timeValue}</div>
         </div>
 
         <div className='player__controls-row'>
