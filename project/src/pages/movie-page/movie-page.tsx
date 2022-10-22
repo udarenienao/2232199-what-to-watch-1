@@ -4,8 +4,7 @@ import Footer from '../../components/footer/footer';
 import Catalog from '../../components/catalog/catalog';
 import {Film} from '../../types/film';
 import Logo from '../../components/logo/logo';
-import {Link, useParams} from 'react-router-dom';
-import NotFound from '../not-found/not-found';
+import {Link, Navigate, useParams} from 'react-router-dom';
 
 
 type MoviePageProps = {
@@ -17,7 +16,7 @@ function MoviePage({ films }: MoviePageProps): JSX.Element{
   const film = films.find((currentFilm) => currentFilm.id === id);
 
   if (!film) {
-    return <NotFound/>;
+    return <Navigate to={'/*'}/>;
   }
 
   return(
@@ -57,7 +56,6 @@ function MoviePage({ films }: MoviePageProps): JSX.Element{
                 <Link
                   to={`/player/${id}`}
                   className='btn btn--play film-card__button'
-                  type='button'
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -66,7 +64,6 @@ function MoviePage({ films }: MoviePageProps): JSX.Element{
                 </Link>
                 <Link
                   className='btn btn--list film-card__button'
-                  type='button'
                   to={'/mylist'}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">

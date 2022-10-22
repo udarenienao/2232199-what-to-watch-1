@@ -1,7 +1,6 @@
 import React from 'react';
 import {Film} from '../../types/film';
-import {Link, useParams} from 'react-router-dom';
-import NotFound from '../not-found/not-found';
+import {Link, Navigate, useParams} from 'react-router-dom';
 
 type PlayerProps ={
   films: Film[];
@@ -13,14 +12,14 @@ function Player({films}: PlayerProps): JSX.Element{
   const film = films.find((currentFilm) => currentFilm.id === id);
 
   if (!film) {
-    return <NotFound/>;
+    return <Navigate to={'/*'}/>;
   }
 
   return (
     <div className='player'>
       <video src={film.videoUrl} className='player__video' poster={film.backgroundUrl}></video>
 
-      <Link to={`/films/${id}`} type='button' className='player__exit'>Exit</Link>
+      <Link to={`/films/${id}`} className='player__exit'>Exit</Link>
 
       <div className='player__controls'>
         <div className='player__controls-row'>

@@ -55,7 +55,6 @@ function Main({ promoMovie, films } : MainProps): JSX.Element{
                 <Link
                   to={`/player/${promoMovie.id}`}
                   className='btn btn--play film-card__button'
-                  type='button'
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -64,7 +63,6 @@ function Main({ promoMovie, films } : MainProps): JSX.Element{
                 </Link>
                 <Link
                   className='btn btn--list film-card__button'
-                  type='button'
                   to={'/mylist'}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
