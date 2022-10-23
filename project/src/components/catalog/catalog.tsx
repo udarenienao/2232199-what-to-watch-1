@@ -23,6 +23,8 @@ function Catalog({ films }: CatalogProps): JSX.Element{
           id={film.id}
           title={film.title}
           posterUrl={film.posterUrl}
+          isPointed={activeCard === film.id}
+          videoUrl={film.videoUrl}
           hoverHandler={() => changeActiveCard(film.id)}
           outHandler={() => changeActiveCard(-1)}
         />))}
