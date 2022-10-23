@@ -18,7 +18,7 @@ export const films: Film[] = [
       'Gustave prides himself on providing first-class service to the hotel\'s guests, including satisfying the' +
       ' sexual needs of the many elderly women who stay there. When one of Gustave\'s lovers dies mysteriously,' +
       ' Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
-    videoUrl: 'https://www.youtube.com/embed/1Fg5iWmQjwk',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     timeValue: '2:25'
   },
   {
@@ -41,7 +41,7 @@ export const films: Film[] = [
       'with the use of an "avatar" identity. While Jake begins to bond with the native tribe and quickly falls in ' +
       'love with the beautiful alien Neytiri, the restless Colonel moves forward with his ruthless extermination ' +
       'tactics, forcing the soldier to take a stand - and fight back in an epic battle for the fate of Pandora.',
-    videoUrl: 'https://www.youtube.com/embed/5PSNL1qE6VY',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/dog.mp4',
     timeValue: '03:31'
   },
   {
@@ -60,7 +60,7 @@ export const films: Film[] = [
       'to ensure mankind\'s survival: Interstellar travel. A newly discovered wormhole in the far reaches of our ' +
       'solar system allows a team of astronauts to go where no man has gone before, a planet that may have the ' +
       'right environment to sustain human life.',
-    videoUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     timeValue: '2:25'
   },
   {
@@ -81,7 +81,7 @@ export const films: Film[] = [
       'benefit. Philippe challenges Driss, offering him a trial period of one month to gain experience helping ' +
       'him. Then Driss can decide whether he would like to stay with him or not. Driss accepts the challenge and ' +
       'moves to the mansion, changing the boring life of Phillipe and his employees.',
-    videoUrl: 'https://www.youtube.com/embed/34WIbmXkewU',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     timeValue: '2:18'
   },
   {
@@ -107,7 +107,7 @@ export const films: Film[] = [
       'A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable ' +
       'power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought ' +
       'for has led up to this moment, the fate of Earth and existence has never been more uncertain.',
-    videoUrl: 'https://www.youtube.com/embed/6ZfuNTqbHE8',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     timeValue: '2:24'
   },
   {
@@ -132,7 +132,7 @@ export const films: Film[] = [
     description: 'A boy in New York is taken in by a wealthy family after his mother is killed in a bombing ' +
       'at the Metropolitan Museum of Art. In a rush of panic, he steals \'The Goldfinch\', a painting that ' +
       'eventually draws him into a world of crime.',
-    videoUrl: 'https://www.youtube.com/embed/IcG06hZooHM',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     timeValue: '2:20'
   },
   {
@@ -154,7 +154,7 @@ export const films: Film[] = [
     description: 'A pragmatic paleontologist touring an almost complete theme park on an island in Central ' +
       'America is tasked with protecting a couple of kids after a power failure causes the park\'s cloned ' +
       'dinosaurs to run loose.',
-    videoUrl: 'https://www.youtube.com/embed/lc0UehYemQA',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     timeValue: '3:27'
   },
   {
@@ -174,7 +174,7 @@ export const films: Film[] = [
       'Crispin Glover'],
     description: 'Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the ' +
       'past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.',
-    videoUrl: 'https://www.youtube.com/embed/qvsgGtivCgs',
+    videoUrl: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     timeValue: '1:44'
   }
 ];
