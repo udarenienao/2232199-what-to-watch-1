@@ -21,7 +21,7 @@ function App({ films }: AppProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<Main promoMovie={films[0]} films={films} />} />
+          <Route index element={<Main promoMovie={films[0]}/>} />
           <Route path='login' element={<SignIn/>}/>
           <Route
             path='mylist'

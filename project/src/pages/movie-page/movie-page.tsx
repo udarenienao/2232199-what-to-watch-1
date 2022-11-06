@@ -94,7 +94,7 @@ function MoviePage({ films }: MoviePageProps): JSX.Element{
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <Catalog films={films.slice(0,4)}/>
+          <Catalog/>
         </section>
 
         <Footer/>
