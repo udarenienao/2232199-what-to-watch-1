@@ -2,17 +2,13 @@ import React from 'react';
 
 import Footer from '../../components/footer/footer';
 import Catalog from '../../components/catalog/catalog';
-import {Film} from '../../types/film';
 import Logo from '../../components/logo/logo';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import FilmDescription from '../../components/film-description/film-description';
+import {useAppSelector} from '../../hooks';
 
-
-type MoviePageProps = {
-  films: Film[]
-};
-
-function MoviePage({ films }: MoviePageProps): JSX.Element{
+function MoviePage(): JSX.Element{
+  const films = useAppSelector((state) => state.filteredFilms);
   const id = Number(useParams().id);
   const film = films.find((currentFilm) => currentFilm.id === id);
 
@@ -94,7 +90,7 @@ function MoviePage({ films }: MoviePageProps): JSX.Element{
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <Catalog/>
+          <Catalog films={films.slice(0, 8)}/>
         </section>
 
         <Footer/>
