@@ -1,13 +1,10 @@
 import SmallFilmCard from '../small-film-card/small-film-card';
-import {Film} from '../../types/film';
 import {useState} from 'react';
+import {useAppSelector} from '../../hooks';
 
-type CatalogProps = {
-  films: Film[]
-}
-
-function Catalog({ films }: CatalogProps): JSX.Element{
+function Catalog(): JSX.Element{
   const [activeCard, setActiveCard] = useState(-1);
+  const films = useAppSelector((state) => state.shownFilms);
 
   const changeActiveCard = (filmId: number) => {
     if (activeCard !== filmId) {

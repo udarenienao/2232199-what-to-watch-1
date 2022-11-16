@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom';
 import { MouseEvent } from 'react';
 import PreviewPlayer from '../preview-player/preview-player';
+import {resetMainScreen} from '../../store/action';
+import {useAppDispatch} from '../../hooks';
 
 type SmallFilmCardProps ={
   id: number;
@@ -13,6 +15,7 @@ type SmallFilmCardProps ={
 };
 
 function SmallFilmCard({id, title, posterUrl, isPointed, videoUrl, hoverHandler, outHandler}: SmallFilmCardProps): JSX.Element{
+  const dispatch = useAppDispatch();
   return (
     <article
       className='small-film-card catalog__films-card'
@@ -27,7 +30,13 @@ function SmallFilmCard({id, title, posterUrl, isPointed, videoUrl, hoverHandler,
         }
       </div>
       <h3 className='small-film-card__title'>
-        <Link to={`/films/${id}`} className='small-film-card__link'>{title}</Link>
+        <Link
+          to={`/films/${id}`}
+          className='small-film-card__link'
+          onClick={() => (dispatch(resetMainScreen()))}
+        >
+          {title}
+        </Link>
       </h3>
     </article>
   );

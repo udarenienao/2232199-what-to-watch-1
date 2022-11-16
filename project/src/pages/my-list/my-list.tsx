@@ -31,7 +31,7 @@ function MyList({myFilms}: MyListProps): JSX.Element{
 
       <section className='catalog'>
         <h2 className='catalog__title visually-hidden'>Catalog</h2>
-        <Catalog films={myFilms}/>
+        <Catalog/>
       </section>
 
       <Footer/>

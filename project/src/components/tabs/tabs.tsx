@@ -1,11 +1,14 @@
 import {FilmTabs} from '../../types/film-tabs';
+import {useAppDispatch} from '../../hooks';
+import {changeFilmTab} from '../../store/action';
 
 type TabsProps = {
-  currentTab: string,
-  updateTab: (a: string) => void
+  currentTab: string
 };
 
-function Tabs({currentTab, updateTab}: TabsProps): JSX.Element {
+function Tabs({currentTab}: TabsProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   return (
     <nav className="film-nav film-card__nav">
       <ul className="film-nav__list">
@@ -16,7 +19,7 @@ function Tabs({currentTab, updateTab}: TabsProps): JSX.Element {
             onClick={
               (evt) => {
                 evt.preventDefault();
-                updateTab(FilmTabs.Overview);
+                dispatch(changeFilmTab({currentTab: FilmTabs.Overview}));
               }
             }
           >
@@ -30,7 +33,7 @@ function Tabs({currentTab, updateTab}: TabsProps): JSX.Element {
             onClick={
               (evt) => {
                 evt.preventDefault();
-                updateTab(FilmTabs.Details);
+                dispatch(changeFilmTab({currentTab: FilmTabs.Details}));
               }
             }
           >
@@ -44,7 +47,7 @@ function Tabs({currentTab, updateTab}: TabsProps): JSX.Element {
             onClick={
               (evt) => {
                 evt.preventDefault();
-                updateTab(FilmTabs.Reviews);
+                dispatch(changeFilmTab({currentTab: FilmTabs.Reviews}));
               }
             }
           >
