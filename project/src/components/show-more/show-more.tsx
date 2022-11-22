@@ -16,7 +16,6 @@ function ShowMoreButton({isAllCardsLoaded}: ShowMoreBtnProps): JSX.Element {
           className="catalog__button"
           type="button"
           onClick={ (evt) => {
-            evt.preventDefault();
             dispatch(increaseCardCount());
           }}
         >

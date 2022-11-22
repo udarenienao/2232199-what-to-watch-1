@@ -27,7 +27,7 @@ function MyList(): JSX.Element{
 
       <section className='catalog'>
         <h2 className='catalog__title visually-hidden'>Catalog</h2>
-        <Catalog films={films.slice(0, 4)}/>
+        <Catalog films={ films }/>
       </section>
 
       <Footer/>

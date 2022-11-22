@@ -9,7 +9,7 @@ import {
   resetFilmScreen,
   resetMainScreen
 } from './action';
-import {sortFilmsByGenre} from '../utils/genre';
+import {filterFilmsByGenre} from '../utils/genre';
 import {FilmTabs} from '../types/film-tabs';
 
 const initialState = {
@@ -30,7 +30,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.cardCount = films.length < 8 ? films.length : 8;
     })
     .addCase(changeGenre, (state, action) => {
-      const filteredFilms = sortFilmsByGenre(state.films, action.payload.currentGenre);
+      const filteredFilms = filterFilmsByGenre(state.films, action.payload.currentGenre);
       state.currentGenre = action.payload.currentGenre;
       state.filteredFilms = filteredFilms;
       state.cardCount = filteredFilms.length < 8 ?
