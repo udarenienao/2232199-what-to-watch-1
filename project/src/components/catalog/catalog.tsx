@@ -20,7 +20,7 @@ function Catalog({films}: CatalogProps): JSX.Element{
     <div className='catalog__films-list'>
       {films.map((film) => (
         <SmallFilmCard
-          key={film.title}
+          key={film.id}
           id={film.id}
           title={film.title}
           posterUrl={film.posterUrl}
