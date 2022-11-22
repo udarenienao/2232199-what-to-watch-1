@@ -10,6 +10,9 @@ import AddReview from '../../pages/add-review/add-review';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import Layout from '../layout/layout';
+import Loading from '../../pages/loading/loading';
+import {isCheckedAuth} from '../../utils/check-auth';
+import {useAppSelector} from '../../hooks';
 
 
 type AppProps = {
@@ -17,6 +20,13 @@ type AppProps = {
 }
 
 function App({ films }: AppProps): JSX.Element {
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+    return (
+      <Loading/>
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -26,7 +36,7 @@ function App({ films }: AppProps): JSX.Element {
           <Route
             path='mylist'
             element={
-              <PrivateRoute hasAccess={false}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <MyList/>
               </PrivateRoute>
             }
