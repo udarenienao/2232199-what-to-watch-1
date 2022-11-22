@@ -27,11 +27,11 @@ function App({ films }: AppProps): JSX.Element {
             path='mylist'
             element={
               <PrivateRoute hasAccess={false}>
-                <MyList myFilms={films.slice(0,3)}/>
+                <MyList/>
               </PrivateRoute>
             }
           />
-          <Route path='films/:id' element={<MoviePage films={films}/>}/>
+          <Route path='films/:id' element={<MoviePage/>}/>
           <Route path='player/:id' element={<Player films={films}/>}/>
           <Route path='films/:id/review' element={<AddReview films={films}/>}/>
           <Route path='*' element={<NotFound/>}/>

@@ -5,13 +5,18 @@ import {Film} from '../../types/film';
 import Catalog from '../../components/catalog/catalog';
 import Logo from '../../components/logo/logo';
 import {Link} from 'react-router-dom';
-import GenresFilter from '../../components/genres-filter';
+import GenresFilter from '../../components/genres-filter/genres-filter';
+import ShowMore from '../../components/show-more/show-more';
+import {useAppSelector} from '../../hooks';
 
 type MainProps = {
     promoMovie: Film;
 }
 
 function Main({ promoMovie } : MainProps): JSX.Element{
+  const films = useAppSelector((state) => state.filteredFilms);
+  const cardCount = useAppSelector((state) => state.cardCount);
+
   return (
     <React.Fragment>
       <section className='film-card'>
@@ -81,10 +86,8 @@ function Main({ promoMovie } : MainProps): JSX.Element{
         <section className='catalog'>
           <h2 className='catalog__title visually-hidden'>Catalog</h2>
           <GenresFilter/>
-          <Catalog/>
-          <div className='catalog__more'>
-            <button className='catalog__button' type='button'>Show more</button>
-          </div>
+          <Catalog films={films.slice(0, cardCount)}/>
+          <ShowMore isAllCardsLoaded={cardCount !== films.length}/>
         </section>
 
         <Footer/>

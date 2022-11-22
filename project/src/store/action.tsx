@@ -3,7 +3,9 @@ import {FilmTabs} from '../types/film-tabs';
 
 const resetMainScreen = createAction('main/resetState');
 const changeGenre = createAction<{ currentGenre: string }>('main/changeGenre');
-const getFilmsByGenre = createAction('main/getFilmsByGenre');
+
+const increaseCardCount = createAction('main/increaseCardCount');
+const resetCardCount = createAction('main/resetCardCount');
 
 const resetFilmScreen = createAction('film/resetState');
 const changeFilmTab = createAction<{ currentTab: FilmTabs }>('film/changeFilmTab');
@@ -11,7 +13,8 @@ const changeFilmTab = createAction<{ currentTab: FilmTabs }>('film/changeFilmTab
 export {
   resetMainScreen,
   changeGenre,
-  getFilmsByGenre,
+  increaseCardCount,
+  resetCardCount,
   resetFilmScreen,
   changeFilmTab
 };

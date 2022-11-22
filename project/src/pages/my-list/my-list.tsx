@@ -1,16 +1,12 @@
 import React from 'react';
 import Footer from '../../components/footer/footer';
 import Catalog from '../../components/catalog/catalog';
-import {Film} from '../../types/film';
 import Logo from '../../components/logo/logo';
 import {Link} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
 
-
-type MyListProps ={
-  myFilms: Film[];
-};
-
-function MyList({myFilms}: MyListProps): JSX.Element{
+function MyList(): JSX.Element{
+  const films = useAppSelector((state) => state.filteredFilms);
   return (
     <div className='user-page'>
       <header className='page-header user-page__head'>
@@ -31,7 +27,7 @@ function MyList({myFilms}: MyListProps): JSX.Element{
 
       <section className='catalog'>
         <h2 className='catalog__title visually-hidden'>Catalog</h2>
-        <Catalog/>
+        <Catalog films={ films }/>
       </section>
 
       <Footer/>
