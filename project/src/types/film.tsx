@@ -12,14 +12,5 @@ export type Film ={
   description: string;
   videoLink: string;
   runTime: string;
-  reviews: FilmReview[];
-};
-
-export type FilmReview = {
-  id: number,
-  rating: number,
-  author: string,
-  date: string,
-  text: string
 };
 

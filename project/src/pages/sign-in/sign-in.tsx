@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
@@ -16,6 +16,23 @@ function SignIn(): JSX.Element{
     dispatch(loginAction(authData));
   };
 
+  const checkEmail = (email: string): boolean => {
+    const result = /\S+@\S+\.\S+/.test(email);
+    setIsInvalidEmail(!result);
+
+    return result;
+  };
+
+  const checkPassword = (password: string): boolean => {
+    const result = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/.test(password);
+    setIsInvalidPassword(!result);
+
+    return result;
+  };
+
+  const [isInvalidEmail, setIsInvalidEmail] = useState(false);
+  const [isInvalidPassword, setIsInvalidPassword] = useState(false);
+
   return(
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -26,8 +43,20 @@ function SignIn(): JSX.Element{
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
+          {
+            isInvalidEmail &&
+            <div className="sign-in__message">
+              <p>Please enter a valid email address</p>
+            </div>
+          }
+          {
+            isInvalidPassword &&
+            <div className="sign-in__message">
+              <p>Please enter a valid password</p>
+            </div>
+          }
           <div className="sign-in__fields">
-            <div className="sign-in__field">
+            <div className={`sign-in__field  ${isInvalidEmail && 'sign-in__field--error'}`}>
               <input
                 className="sign-in__input"
                 type="email"
@@ -35,10 +64,11 @@ function SignIn(): JSX.Element{
                 name="user-email"
                 id="user-email"
                 ref={emailRef}
+                onChange={() => setIsInvalidEmail(false)}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
-            <div className="sign-in__field">
+            <div className={`sign-in__field ${isInvalidPassword && 'sign-in__field--error'}`}>
               <input
                 className="sign-in__input"
                 type="password"
@@ -46,6 +76,7 @@ function SignIn(): JSX.Element{
                 name="user-password"
                 id="user-password"
                 ref={passwordRef}
+                onChange={() => setIsInvalidPassword(false)}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
@@ -55,7 +86,10 @@ function SignIn(): JSX.Element{
               className="sign-in__btn"
               type="submit"
               onClick={(evt) => {
-                if (emailRef.current !== null && passwordRef.current !== null) {
+                if (emailRef.current !== null
+                  && passwordRef.current !== null
+                  && checkEmail(emailRef.current.value)
+                  && checkPassword(passwordRef.current.value)) {
                   onSubmit({
                     email: emailRef.current.value,
                     password: passwordRef.current.value,

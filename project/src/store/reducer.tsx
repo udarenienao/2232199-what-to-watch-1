@@ -4,12 +4,12 @@ import {DEFAULT_GENRE} from '../types/genres';
 import {
   changeFilmTab,
   changeGenre,
-  increaseCardCount,
-  loadFilms,
+  increaseCardCount, loadComments, loadFilm,
+  loadFilms, loadSimilar,
   requireAuthorization,
   resetCardCount,
   resetFilmScreen,
-  resetMainScreen,
+  resetMainScreen, setAvatar,
   setDataLoadedStatus,
   setError
 } from './action';
@@ -17,6 +17,7 @@ import {filterFilmsByGenre} from '../utils/genre';
 import {FilmTabs} from '../types/film-tabs';
 import {AuthorizationStatus, CARDS_PER_STEP} from '../const';
 import {Film} from '../types/film';
+import {Comments} from '../types/comments';
 
 type InitialState = {
   films: Film[];
@@ -26,7 +27,11 @@ type InitialState = {
   authorizationStatus: string,
   isDataLoaded: boolean,
   filmTab: string,
-  error: string | null
+  error: string | null,
+  avatar: string | null,
+  comments: Comments,
+  similar: Film[],
+  film: Film | null
 }
 
 const initialState: InitialState = {
@@ -40,7 +45,13 @@ const initialState: InitialState = {
 
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
-  error: null
+  error: null,
+
+  avatar: null,
+
+  comments: [],
+  similar: [],
+  film: null
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -89,5 +100,19 @@ export const reducer = createReducer(initialState, (builder) => {
 
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+
+    .addCase(setAvatar, (state, action) => {
+      state.avatar = action.payload;
+    })
+
+    .addCase(loadFilm, (state, action) => {
+      state.film = action.payload;
+    })
+    .addCase(loadComments, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(loadSimilar, (state, action) => {
+      state.similar = action.payload;
     });
 });

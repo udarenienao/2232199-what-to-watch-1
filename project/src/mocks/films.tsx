@@ -20,20 +20,6 @@ export const films: Film[] = [
       ' Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '2:25',
-    reviews: [{
-      id: 1,
-      rating: 7.6,
-      author: 'Paula Fleri-Soler',
-      date: 'December 20, 2016',
-      text: 'It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.'
-    }, {
-      id: 2,
-      rating: 7.2,
-      author: 'Matthew Lickona',
-      date: 'December 20, 2016',
-      text: 'The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.'
-    }
-    ]
   },
   {
     id: 2,
@@ -56,8 +42,7 @@ export const films: Film[] = [
       'love with the beautiful alien Neytiri, the restless Colonel moves forward with his ruthless extermination ' +
       'tactics, forcing the soldier to take a stand - and fight back in an epic battle for the fate of Pandora.',
     videoLink: 'https://10.react.pages.academy/static/film/video/dog.mp4',
-    runTime: '03:31',
-    reviews: []
+    runTime: '03:31'
   },
   {
     id: 3,
@@ -77,7 +62,6 @@ export const films: Film[] = [
       'right environment to sustain human life.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '2:25',
-    reviews: []
   },
   {
     id: 4,
@@ -98,8 +82,7 @@ export const films: Film[] = [
       'him. Then Driss can decide whether he would like to stay with him or not. Driss accepts the challenge and ' +
       'moves to the mansion, changing the boring life of Phillipe and his employees.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
-    runTime: '2:18',
-    reviews: []
+    runTime: '2:18'
   },
   {
     id: 5,
@@ -126,7 +109,6 @@ export const films: Film[] = [
       'for has led up to this moment, the fate of Earth and existence has never been more uncertain.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '2:24',
-    reviews: []
   },
   {
     id: 6,
@@ -152,7 +134,6 @@ export const films: Film[] = [
       'eventually draws him into a world of crime.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '2:20',
-    reviews: []
   },
   {
     id: 7,
@@ -174,8 +155,7 @@ export const films: Film[] = [
       'America is tasked with protecting a couple of kids after a power failure causes the park\'s cloned ' +
       'dinosaurs to run loose.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
-    runTime: '3:27',
-    reviews: []
+    runTime: '3:27'
   },
   {
     id: 8,
@@ -195,8 +175,7 @@ export const films: Film[] = [
     description: 'Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the ' +
       'past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
-    runTime: '1:44',
-    reviews: []
+    runTime: '1:44'
   },
   {
     id: 9,
@@ -216,21 +195,7 @@ export const films: Film[] = [
       ' sexual needs of the many elderly women who stay there. When one of Gustave\'s lovers dies mysteriously,' +
       ' Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
-    runTime: '2:25',
-    reviews: [{
-      id: 1,
-      rating: 7.6,
-      author: 'Paula Fleri-Soler',
-      date: 'December 20, 2016',
-      text: 'It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.'
-    }, {
-      id: 2,
-      rating: 7.2,
-      author: 'Matthew Lickona',
-      date: 'December 20, 2016',
-      text: 'The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.'
-    }
-    ]
+    runTime: '2:25'
   },
   {
     id: 10,
@@ -254,7 +219,6 @@ export const films: Film[] = [
       'tactics, forcing the soldier to take a stand - and fight back in an epic battle for the fate of Pandora.',
     videoLink: 'https://10.react.pages.academy/static/film/video/dog.mp4',
     runTime: '03:31',
-    reviews: []
   },
   {
     id: 11,
@@ -274,7 +238,6 @@ export const films: Film[] = [
       'right environment to sustain human life.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '2:25',
-    reviews: []
   },
   {
     id: 12,
@@ -296,7 +259,6 @@ export const films: Film[] = [
       'moves to the mansion, changing the boring life of Phillipe and his employees.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '2:18',
-    reviews: []
   },
   {
     id: 13,
@@ -323,7 +285,6 @@ export const films: Film[] = [
       'for has led up to this moment, the fate of Earth and existence has never been more uncertain.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '2:24',
-    reviews: []
   },
   {
     id: 14,
@@ -348,8 +309,7 @@ export const films: Film[] = [
       'at the Metropolitan Museum of Art. In a rush of panic, he steals \'The Goldfinch\', a painting that ' +
       'eventually draws him into a world of crime.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
-    runTime: '2:20',
-    reviews: []
+    runTime: '2:20'
   },
   {
     id: 15,
@@ -372,7 +332,6 @@ export const films: Film[] = [
       'dinosaurs to run loose.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '3:27',
-    reviews: []
   },
   {
     id: 16,
@@ -393,6 +352,5 @@ export const films: Film[] = [
       'past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.',
     videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
     runTime: '1:44',
-    reviews: []
   }
 ];
