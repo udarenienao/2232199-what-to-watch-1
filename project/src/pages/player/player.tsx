@@ -17,7 +17,7 @@ function Player({films}: PlayerProps): JSX.Element{
 
   return (
     <div className='player'>
-      <video src={film.videoUrl} className='player__video' poster={film.backgroundUrl}></video>
+      <video src={film.videoLink} className='player__video' poster={film.backgroundImage}></video>
 
       <Link to={`/films/${id}`} className='player__exit'>Exit</Link>
 
@@ -27,7 +27,7 @@ function Player({films}: PlayerProps): JSX.Element{
             <progress className='player__progress' value='30' max='100'></progress>
             <div className='player__toggler' style={{left: '30%'}}>Toggler</div>
           </div>
-          <div className='player__time-value'>{film.timeValue}</div>
+          <div className='player__time-value'>{film.runTime}</div>
         </div>
 
         <div className='player__controls-row'>

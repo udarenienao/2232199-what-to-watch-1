@@ -21,7 +21,7 @@ function Main({ promoMovie } : MainProps): JSX.Element{
     <React.Fragment>
       <section className='film-card'>
         <div className='film-card__bg'>
-          <img src={promoMovie.backgroundUrl} alt={promoMovie.title}/>
+          <img src={promoMovie.backgroundImage} alt={promoMovie.name}/>
         </div>
 
         <h1 className='visually-hidden'>WTW</h1>
@@ -44,16 +44,16 @@ function Main({ promoMovie } : MainProps): JSX.Element{
         <div className='film-card__wrap'>
           <div className='film-card__info'>
             <div className='film-card__poster'>
-              <img src={promoMovie.posterUrl} alt={promoMovie.title}
+              <img src={promoMovie.posterImage} alt={promoMovie.name}
                 width='218' height='327'
               />
             </div>
 
             <div className='film-card__desc'>
-              <h2 className='film-card__title'>{promoMovie.title}</h2>
+              <h2 className='film-card__title'>{promoMovie.name}</h2>
               <p className='film-card__meta'>
                 <span className='film-card__genre'>{promoMovie.genre}</span>
-                <span className='film-card__year'>{promoMovie.releaseDate}</span>
+                <span className='film-card__year'>{promoMovie.released}</span>
               </p>
 
               <div className='film-card__buttons'>
