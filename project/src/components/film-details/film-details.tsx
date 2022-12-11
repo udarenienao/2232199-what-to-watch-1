@@ -24,7 +24,7 @@ function FilmDetails(props: DetailsProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{film.timeValue}</span>
+          <span className="film-card__details-value">{film.runTime}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
@@ -32,7 +32,7 @@ function FilmDetails(props: DetailsProps): JSX.Element {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{film.releaseDate}</span>
+          <span className="film-card__details-value">{film.released}</span>
         </p>
       </div>
     </div>

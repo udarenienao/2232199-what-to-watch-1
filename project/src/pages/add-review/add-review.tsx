@@ -1,26 +1,23 @@
 import React from 'react';
 import Logo from '../../components/logo/logo';
 import {Link, Navigate, useParams} from 'react-router-dom';
-import {Film} from '../../types/film';
 import ReviewForm from '../../components/review-form/review-form';
+import {useAppSelector} from '../../hooks';
+import UserBlock from '../../components/user-block/user-block';
 
-type AddReviewProps = {
-  films: Film[]
-}
-
-function AddReview({films}: AddReviewProps): JSX.Element{
+function AddReview(): JSX.Element{
   const id = Number(useParams().id);
-  const film = films.find((currentFilm) => currentFilm.id === id);
+  const film = useAppSelector((state) => state.film);
 
   if (!film) {
-    return <Navigate to={'/*'}/>;
+    return <Navigate to={'/notfound'}/>;
   }
 
   return (
     <section className='film-card film-card--full'>
       <div className='film-card__header'>
         <div className='film-card__bg'>
-          <img src={film.backgroundUrl} alt={film.title}/>
+          <img src={film.backgroundImage} alt={film.name}/>
         </div>
 
         <h1 className='visually-hidden'>WTW</h1>
@@ -31,28 +28,21 @@ function AddReview({films}: AddReviewProps): JSX.Element{
           <nav className='breadcrumbs'>
             <ul className='breadcrumbs__list'>
               <li className='breadcrumbs__item'>
-                <Link to={`/films/${id}`} className="breadcrumbs__link">{film.title}</Link>
+                <Link to={`/films/${id}`} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className='breadcrumbs__item'>
-                <a className='breadcrumbs__link'>Add review</a>
+                <Link className="breadcrumbs__link" to={`/films/${id}/review`}>
+                  Add review
+                </Link>
               </li>
             </ul>
           </nav>
 
-          <ul className='user-block'>
-            <li className='user-block__item'>
-              <div className='user-block__avatar'>
-                <img src='img/avatar.jpg' alt='User avatar' width='63' height='63'/>
-              </div>
-            </li>
-            <li className='user-block__item'>
-              <Link to='/login' className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
+          <UserBlock/>
         </header>
 
         <div className='film-card__poster film-card__poster--small'>
-          <img src={film.posterUrl} alt={film.title}
+          <img src={film.posterImage} alt={film.name}
             width='218' height='327'
           />
         </div>

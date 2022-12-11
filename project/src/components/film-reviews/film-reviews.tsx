@@ -1,20 +1,20 @@
-import { Film } from '../../types/film';
+import {Comments} from '../../types/comments';
 
 type ReviewsProps = {
-  film: Film;
+  reviews: Comments
 }
 
-function FilmReviews({ film }: ReviewsProps): JSX.Element {
+function FilmReviews({ reviews }: ReviewsProps): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {film.reviews.map((review) => (
+        {reviews.map((review) => (
           <div className="review" key={`review-${review.id}`}>
             <blockquote className="review__quote">
-              <p className="review__text">{review.text}</p>
+              <p className="review__text">{review.comment}</p>
 
               <footer className="review__details">
-                <cite className="review__author">{review.author}</cite>
+                <cite className="review__author">{review.user.name}</cite>
                 <time
                   className="review__date"
                   dateTime={review.date}

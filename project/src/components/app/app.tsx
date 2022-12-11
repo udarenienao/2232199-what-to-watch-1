@@ -43,7 +43,7 @@ function App({ films }: AppProps): JSX.Element {
           />
           <Route path='films/:id' element={<MoviePage/>}/>
           <Route path='player/:id' element={<Player films={films}/>}/>
-          <Route path='films/:id/review' element={<AddReview films={films}/>}/>
+          <Route path='films/:id/review' element={<AddReview/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Route>
       </Routes>

@@ -5,12 +5,14 @@ import FilmDetails from '../film-details/film-details';
 import FilmReviews from '../film-reviews/film-reviews';
 import FilmOverview from '../film-overview/film-overview';
 import {useAppSelector} from '../../hooks';
+import {Comments} from '../../types/comments';
 
 type FilmDescProps = {
   film: Film;
+  reviews: Comments;
 }
 
-function FilmDescription({film}: FilmDescProps): JSX.Element {
+function FilmDescription({film, reviews}: FilmDescProps): JSX.Element {
   const currentTab = useAppSelector((state) => state.filmTab);
 
   return (
@@ -19,7 +21,7 @@ function FilmDescription({film}: FilmDescProps): JSX.Element {
 
       {currentTab === FilmTabs.Overview && <FilmOverview film={film} />}
       {currentTab === FilmTabs.Details && <FilmDetails film={film} />}
-      {currentTab === FilmTabs.Reviews && <FilmReviews film={film} />}
+      {currentTab === FilmTabs.Reviews && <FilmReviews reviews={reviews} />}
     </div>
   );
 }

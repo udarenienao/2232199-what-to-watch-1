@@ -1,19 +1,40 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import Footer from '../../components/footer/footer';
 import Catalog from '../../components/catalog/catalog';
 import Logo from '../../components/logo/logo';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import FilmDescription from '../../components/film-description/film-description';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {fetchCommentsByID, fetchFilmByID, fetchSimilarByID} from '../../store/api-actions';
+import {setDataLoadedStatus} from '../../store/action';
+import Loading from '../loading/loading';
+import {AuthorizationStatus} from '../../const';
 
 function MoviePage(): JSX.Element{
-  const films = useAppSelector((state) => state.filteredFilms);
+
   const id = Number(useParams().id);
-  const film = films.find((currentFilm) => currentFilm.id === id);
+  const film = useAppSelector((state) => state.film);
+  const comments = useAppSelector((state) => state.comments);
+  const similar = useAppSelector((state) => state.similar);
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const loadStatus = useAppSelector((state) => state.isDataLoaded);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setDataLoadedStatus(true));
+    dispatch(fetchFilmByID(id.toString()));
+    dispatch(fetchCommentsByID(id.toString()));
+    dispatch(fetchSimilarByID(id.toString()));
+    dispatch(setDataLoadedStatus(false));
+  }, [id, dispatch]);
+
+  if (loadStatus) {
+    return(<Loading />);
+  }
 
   if (!film) {
-    return <Navigate to={'/*'}/>;
+    return <Navigate to={'/notfound'}/>;
   }
 
   return(
@@ -21,7 +42,7 @@ function MoviePage(): JSX.Element{
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.backgroundUrl} alt={film.title}/>
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -43,10 +64,10 @@ function MoviePage(): JSX.Element{
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film.title}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.releaseDate}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -69,7 +90,8 @@ function MoviePage(): JSX.Element{
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </Link>
-                <Link to={'review'} className="btn film-card__button" type='button'>Add review</Link>
+                { authStatus === AuthorizationStatus.Auth &&
+                  <Link to={'review'} className="btn film-card__button" type='button'>Add review</Link>}
               </div>
             </div>
           </div>
@@ -78,11 +100,11 @@ function MoviePage(): JSX.Element{
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.posterUrl} alt={film.title}
+              <img src={film.posterImage} alt={film.name}
                 width="218" height="327"
               />
             </div>
-            <FilmDescription film={film}/>
+            <FilmDescription film={film} reviews={comments}/>
           </div>
         </div>
       </section>
@@ -90,7 +112,7 @@ function MoviePage(): JSX.Element{
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <Catalog films={films.slice(0, 4)}/>
+          <Catalog films={similar}/>
         </section>
 
         <Footer/>

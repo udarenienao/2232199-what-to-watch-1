@@ -20,12 +20,12 @@ function Catalog({films}: CatalogProps): JSX.Element{
     <div className='catalog__films-list'>
       {films.map((film) => (
         <SmallFilmCard
-          key={film.title}
+          key={film.id}
           id={film.id}
-          title={film.title}
-          posterUrl={film.posterUrl}
+          title={film.name}
+          posterUrl={film.posterImage}
           isPointed={activeCard === film.id}
-          videoUrl={film.videoUrl}
+          videoUrl={film.videoLink}
           hoverHandler={() => changeActiveCard(film.id)}
           outHandler={() => changeActiveCard(-1)}
         />))}
