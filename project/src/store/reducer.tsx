@@ -17,7 +17,7 @@ import {filterFilmsByGenre} from '../utils/genre';
 import {FilmTabs} from '../types/film-tabs';
 import {AuthorizationStatus, CARDS_PER_STEP} from '../const';
 import {Film} from '../types/film';
-import {Comments} from '../types/comments';
+import {Comment} from '../types/comment';
 
 type InitialState = {
   films: Film[];
@@ -29,7 +29,7 @@ type InitialState = {
   filmTab: string,
   error: string | null,
   avatar: string | null,
-  comments: Comments,
+  comments: Comment[],
   similar: Film[],
   film: Film | null
 }

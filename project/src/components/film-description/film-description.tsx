@@ -5,11 +5,11 @@ import FilmDetails from '../film-details/film-details';
 import FilmReviews from '../film-reviews/film-reviews';
 import FilmOverview from '../film-overview/film-overview';
 import {useAppSelector} from '../../hooks';
-import {Comments} from '../../types/comments';
+import {Comment} from '../../types/comment';
 
 type FilmDescProps = {
   film: Film;
-  reviews: Comments;
+  reviews: Comment[];
 }
 
 function FilmDescription({film, reviews}: FilmDescProps): JSX.Element {
