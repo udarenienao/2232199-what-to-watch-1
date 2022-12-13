@@ -2,7 +2,7 @@ import {createAction} from '@reduxjs/toolkit';
 import {FilmTabs} from '../types/film-tabs';
 import {Film} from '../types/film';
 import {AuthorizationStatus} from '../const';
-import {Comments} from '../types/comments';
+import {Comment} from '../types/comment';
 
 const resetMainScreen = createAction('main/resetState');
 const changeGenre = createAction<{ currentGenre: string }>('main/changeGenre');
@@ -20,7 +20,7 @@ const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuth
 
 const setAvatar = createAction<string | null>('user/avatar');
 const loadFilm = createAction<Film>('data/loadFilmById');
-const loadComments = createAction<Comments>('data/loadCommentsById');
+const loadComments = createAction<Comment[]>('data/loadCommentsById');
 const loadSimilar = createAction<Film[]>('data/loadSimilarById');
 
 export {

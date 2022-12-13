@@ -17,7 +17,7 @@ import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';
 import {store} from './index';
-import {Comments} from '../types/comments';
+import {Comment} from '../types/comment';
 import {UserComment} from '../types/user-comment';
 import {useNavigate} from 'react-router-dom';
 
@@ -108,7 +108,7 @@ export const fetchCommentsByID = createAsyncThunk<void, string, {
 }>(
   'data/fetchCommentsById',
   async (filmId: string, {dispatch, extra: api}) => {
-    const {data} = await api.get<Comments>(`${APIRoute.Comments}/${filmId}`);
+    const {data} = await api.get<Comment[]>(`${APIRoute.Comments}/${filmId}`);
     dispatch(loadComments(data));
   },
 );
