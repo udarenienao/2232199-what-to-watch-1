@@ -2,11 +2,16 @@ import React, {useRef, useState} from 'react';
 
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthData} from '../../types/auth-data';
 import {loginAction} from '../../store/api-actions';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {Navigate} from 'react-router-dom';
+import {AuthorizationStatus} from '../../const';
 
 function SignIn(): JSX.Element{
+  const authStatus = useAppSelector(getAuthorizationStatus);
+
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
@@ -32,6 +37,10 @@ function SignIn(): JSX.Element{
 
   const [isInvalidEmail, setIsInvalidEmail] = useState(false);
   const [isInvalidPassword, setIsInvalidPassword] = useState(false);
+
+  if (authStatus === AuthorizationStatus.Auth) {
+    return <Navigate to='/' />;
+  }
 
   return(
     <div className="user-page">

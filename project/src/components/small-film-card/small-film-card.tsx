@@ -1,26 +1,25 @@
 import {Link} from 'react-router-dom';
-import { MouseEvent } from 'react';
+import {useState} from 'react';
 import PreviewPlayer from '../preview-player/preview-player';
-import {resetMainScreen} from '../../store/action';
 import {useAppDispatch} from '../../hooks';
+import {resetMainScreen} from '../../store/main-data/main-data';
 
 type SmallFilmCardProps ={
   id: number;
   title: string;
   posterUrl: string;
-  isPointed: boolean;
   videoUrl: string;
-  hoverHandler: (event: MouseEvent<HTMLDivElement>) => void;
-  outHandler: (event: MouseEvent<HTMLDivElement>) => void;
 };
 
-function SmallFilmCard({id, title, posterUrl, isPointed, videoUrl, hoverHandler, outHandler}: SmallFilmCardProps): JSX.Element{
+function SmallFilmCard({id, title, posterUrl, videoUrl}: SmallFilmCardProps): JSX.Element{
   const dispatch = useAppDispatch();
+  const [isPointed, setIsPointed] = useState(false);
+
   return (
     <article
       className='small-film-card catalog__films-card'
-      onMouseOver={hoverHandler}
-      onMouseLeave={outHandler}
+      onMouseEnter={() => setIsPointed(true)}
+      onMouseLeave={() => setIsPointed(false)}
     >
       <div className='small-film-card__image'>
         {

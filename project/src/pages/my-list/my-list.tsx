@@ -1,33 +1,51 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Footer from '../../components/footer/footer';
-import Catalog from '../../components/catalog/catalog';
 import Logo from '../../components/logo/logo';
-import {Link} from 'react-router-dom';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getFavoriteFilms, getLoadedDataStatus} from '../../store/main-data/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import UserBlock from '../../components/user-block/user-block';
+import Loading from '../loading/loading';
+import {fetchFavoriteFilmsAction} from '../../store/api-actions';
+import {AuthorizationStatus} from '../../const';
+import SmallFilmCard from '../../components/small-film-card/small-film-card';
 
 function MyList(): JSX.Element{
-  const films = useAppSelector((state) => state.filteredFilms);
+  const films = useAppSelector(getFavoriteFilms);
+  const authStatus = useAppSelector(getAuthorizationStatus);
+
+  const isDataLoaded = useAppSelector(getLoadedDataStatus);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+  }, [authStatus, dispatch]);
+
+  if (isDataLoaded) {
+    return <Loading />;
+  }
   return (
     <div className='user-page'>
       <header className='page-header user-page__head'>
         <Logo/>
 
-        <h1 className='page-title user-page__title'>My list <span className='user-page__film-count'>9</span></h1>
-        <ul className='user-block'>
-          <li className='user-block__item'>
-            <div className='user-block__avatar'>
-              <img src='img/avatar.jpg' alt='User avatar' width='63' height='63'/>
-            </div>
-          </li>
-          <li className='user-block__item'>
-            <Link to='/login' className="user-block__link">Sign out</Link>
-          </li>
-        </ul>
+        <h1 className='page-title user-page__title'>My list <span className='user-page__film-count'>{films.length}</span></h1>
+        <UserBlock/>
       </header>
 
       <section className='catalog'>
         <h2 className='catalog__title visually-hidden'>Catalog</h2>
-        <Catalog films={ films }/>
+        {films.map((film) => (
+          <SmallFilmCard
+            key={film.id}
+            id={film.id}
+            title={film.name}
+            posterUrl={film.previewImage}
+            videoUrl={film.videoLink}
+          />))}
       </section>
 
       <Footer/>

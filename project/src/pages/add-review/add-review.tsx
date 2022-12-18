@@ -1,13 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Logo from '../../components/logo/logo';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import ReviewForm from '../../components/review-form/review-form';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
+import {getFilm} from '../../store/film-data/selectors';
+import {getLoadedDataStatus} from '../../store/main-data/selectors';
+import Loading from '../loading/loading';
+import {fetchFilmByID} from '../../store/api-actions';
 
 function AddReview(): JSX.Element{
   const id = Number(useParams().id);
-  const film = useAppSelector((state) => state.film);
+  const film = useAppSelector(getFilm);
+  const loadStatus = useAppSelector(getLoadedDataStatus);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFilmByID(id.toString()));
+  }, [id, dispatch]);
+
+  if (loadStatus) {
+    return(<Loading />);
+  }
 
   if (!film) {
     return <Navigate to={'/notfound'}/>;

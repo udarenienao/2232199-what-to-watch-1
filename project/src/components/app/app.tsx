@@ -1,7 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import Main from '../../pages/main/main';
-import {Film} from '../../types/film';
 import SignIn from '../../pages/sign-in/sign-in';
 import MyList from '../../pages/my-list/my-list';
 import MoviePage from '../../pages/movie-page/movie-page';
@@ -13,15 +12,11 @@ import Layout from '../layout/layout';
 import Loading from '../../pages/loading/loading';
 import {isCheckedAuth} from '../../utils/check-auth';
 import {useAppSelector} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
-
-type AppProps = {
-  films: Film[];
-}
-
-function App({ films }: AppProps): JSX.Element {
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
-  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+function App(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  if (isCheckedAuth(authorizationStatus)) {
     return (
       <Loading/>
     );
@@ -31,7 +26,7 @@ function App({ films }: AppProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<Main promoMovie={films[0]}/>} />
+          <Route index element={<Main/>} />
           <Route path='login' element={<SignIn/>}/>
           <Route
             path='mylist'
@@ -42,7 +37,7 @@ function App({ films }: AppProps): JSX.Element {
             }
           />
           <Route path='films/:id' element={<MoviePage/>}/>
-          <Route path='player/:id' element={<Player films={films}/>}/>
+          <Route path='player/:id' element={<Player/>}/>
           <Route path='films/:id/review' element={<AddReview/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Route>

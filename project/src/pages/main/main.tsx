@@ -1,21 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import Footer from '../../components/footer/footer';
-import {Film} from '../../types/film';
 import Catalog from '../../components/catalog/catalog';
 import Logo from '../../components/logo/logo';
-import {Link} from 'react-router-dom';
 import GenresFilter from '../../components/genres-filter/genres-filter';
 import ShowMore from '../../components/show-more/show-more';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {AuthorizationStatus} from '../../const';
+import {fetchFavoriteFilmsAction} from '../../store/api-actions';
+import {getCardCount, getFilteredFilms, getPromo} from '../../store/main-data/selectors';
+import UserBlock from '../../components/user-block/user-block';
+import FilmCardButtons from '../../components/film-card-buttons/film-card-buttons';
 
-type MainProps = {
-    promoMovie: Film;
-}
+function Main(): JSX.Element{
+  const promoMovie = useAppSelector(getPromo);
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
-function Main({ promoMovie } : MainProps): JSX.Element{
-  const films = useAppSelector((state) => state.filteredFilms);
-  const cardCount = useAppSelector((state) => state.cardCount);
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+  }, [authStatus, dispatch]);
+  const films = useAppSelector(getFilteredFilms);
+  const cardCount = useAppSelector(getCardCount);
+
+  if (!promoMovie) {
+    return <section className="film-card"></section>;
+  }
 
   return (
     <React.Fragment>
@@ -28,17 +41,7 @@ function Main({ promoMovie } : MainProps): JSX.Element{
 
         <header className='page-header film-card__head'>
           <Logo/>
-
-          <ul className='user-block'>
-            <li className='user-block__item'>
-              <div className='user-block__avatar'>
-                <img src='img/avatar.jpg' alt='User avatar' width='63' height='63'/>
-              </div>
-            </li>
-            <li className='user-block__item'>
-              <Link to='/login' className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
+          <UserBlock/>
         </header>
 
         <div className='film-card__wrap'>
@@ -56,27 +59,7 @@ function Main({ promoMovie } : MainProps): JSX.Element{
                 <span className='film-card__year'>{promoMovie.released}</span>
               </p>
 
-              <div className='film-card__buttons'>
-                <Link
-                  to={`/player/${promoMovie.id}`}
-                  className='btn btn--play film-card__button'
-                >
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </Link>
-                <Link
-                  className='btn btn--list film-card__button'
-                  to={'/mylist'}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </Link>
-              </div>
+              <FilmCardButtons film={promoMovie} authStatus={authStatus}/>
             </div>
           </div>
         </div>
@@ -86,7 +69,7 @@ function Main({ promoMovie } : MainProps): JSX.Element{
         <section className='catalog'>
           <h2 className='catalog__title visually-hidden'>Catalog</h2>
           <GenresFilter/>
-          <Catalog films={films.slice(0, cardCount)}/>
+          <Catalog films={films}/>
           <ShowMore isAllCardsLoaded={cardCount !== films.length}/>
         </section>
 
