@@ -3,6 +3,8 @@ export type Film ={
   name: string;
   posterImage: string;
   backgroundImage: string;
+  previewImage: string;
+  backgroundColor: string;
   genre: string;
   released: number;
   rating: number;
@@ -11,6 +13,8 @@ export type Film ={
   starring: string[];
   description: string;
   videoLink: string;
-  runTime: string;
+  previewVideoLink: string;
+  runTime: number;
+  isFavorite: boolean;
 };
 

@@ -1,6 +1,6 @@
 import {FilmTabs} from '../../types/film-tabs';
 import {useAppDispatch} from '../../hooks';
-import {changeFilmTab} from '../../store/action';
+import {changeFilmTab} from '../../store/film-data/film-data';
 
 type TabsProps = {
   currentTab: string
@@ -19,7 +19,7 @@ function Tabs({currentTab}: TabsProps): JSX.Element {
             onClick={
               (evt) => {
                 evt.preventDefault();
-                dispatch(changeFilmTab({currentTab: FilmTabs.Overview}));
+                dispatch(changeFilmTab(FilmTabs.Overview));
               }
             }
           >
@@ -33,7 +33,7 @@ function Tabs({currentTab}: TabsProps): JSX.Element {
             onClick={
               (evt) => {
                 evt.preventDefault();
-                dispatch(changeFilmTab({currentTab: FilmTabs.Details}));
+                dispatch(changeFilmTab(FilmTabs.Details));
               }
             }
           >
@@ -47,7 +47,7 @@ function Tabs({currentTab}: TabsProps): JSX.Element {
             onClick={
               (evt) => {
                 evt.preventDefault();
-                dispatch(changeFilmTab({currentTab: FilmTabs.Reviews}));
+                dispatch(changeFilmTab(FilmTabs.Reviews));
               }
             }
           >

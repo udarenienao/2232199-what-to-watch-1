@@ -1,18 +1,15 @@
 import React from 'react';
-import {Film} from '../../types/film';
 import {Link, Navigate, useParams} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
+import {getFilm} from '../../store/film-data/selectors';
 
-type PlayerProps ={
-  films: Film[];
-};
-
-function Player({films}: PlayerProps): JSX.Element{
+function Player(): JSX.Element{
 
   const id = Number(useParams().id);
-  const film = films.find((currentFilm) => currentFilm.id === id);
+  const film = useAppSelector(getFilm);
 
   if (!film) {
-    return <Navigate to={'/*'}/>;
+    return <Navigate to={'/notfound'}/>;
   }
 
   return (
