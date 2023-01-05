@@ -90,7 +90,6 @@ export const {
   resetMainScreen,
   changeGenre,
   increaseCardCount,
-  resetCardCount,
   setIsDataLoaded,
   setFavoriteCount
 } = mainData.actions;

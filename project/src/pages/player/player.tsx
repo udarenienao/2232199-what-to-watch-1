@@ -1,15 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, Navigate, useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
-import {getFilm} from '../../store/film-data/selectors';
+import {getFilm, getIsFilmFoundStatus, getIsFilmLoadingStatus} from '../../store/film-data/selectors';
+import Loading from '../loading/loading';
+import NotFound from '../not-found/not-found';
 
 function Player(): JSX.Element{
-
+  const [isPlay, setIsPlay] = useState(true);
   const id = Number(useParams().id);
   const film = useAppSelector(getFilm);
+  const isFilmFoundStatus = useAppSelector(getIsFilmFoundStatus);
+  const isFilmLoadingStatus = useAppSelector(getIsFilmLoadingStatus);
 
   if (!film) {
     return <Navigate to={'/notfound'}/>;
+  }
+
+  if (isFilmLoadingStatus) {
+    return <Loading />;
+  }
+
+  if (!isFilmFoundStatus) {
+    return <NotFound />;
   }
 
   return (
