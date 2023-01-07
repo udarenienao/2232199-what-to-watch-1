@@ -1,6 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {CARDS_PER_STEP, NameSpace} from '../../const';
-import {changePromoStatusToView, fetchFavoriteFilmsAction, fetchFilmsAction, fetchPromoAction} from '../api-actions';
+import {
+  changeFilmStatusToView,
+  fetchFavoriteFilmsAction,
+  fetchFilmsAction,
+  fetchPromoAction
+} from '../api-actions';
 import {MainData} from '../../types/main-data';
 import {DEFAULT_GENRE} from '../../types/genres';
 import {filterFilmsByGenre} from '../../utils/genre';
@@ -76,8 +81,12 @@ export const mainData = createSlice({
         state.favoriteCount = action.payload.length;
         state.isDataLoaded = false;
       })
-      .addCase(changePromoStatusToView.fulfilled, (state, action) => {
-        state.promo = action.payload;
+      .addCase(changeFilmStatusToView.fulfilled, (state, action) => {
+        if (action.payload.isFavorite) {
+          state.favoriteCount = state.favoriteCount + 1;
+        } else {
+          state.favoriteCount = state.favoriteCount - 1;
+        }
       });
   }
 });
@@ -86,5 +95,4 @@ export const {
   resetMainScreen,
   changeGenre,
   increaseCardCount,
-  setFavoriteCount
 } = mainData.actions;

@@ -4,7 +4,6 @@ import React from 'react';
 import {Film} from '../../types/film';
 import {FilmStatus} from '../../types/film-status';
 import {changeFilmStatusToView} from '../../store/api-actions';
-import {setFavoriteCount} from '../../store/main-data/main-data';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {getFavoriteCount} from '../../store/main-data/selectors';
 
@@ -24,12 +23,6 @@ function FilmCardButtons({film, authStatus}: FilmCardButtonsProps): JSX.Element{
     };
 
     dispatch(changeFilmStatusToView(filmStatus));
-
-    if (film?.isFavorite) {
-      dispatch(setFavoriteCount(favoriteCount - 1));
-    } else {
-      dispatch(setFavoriteCount(favoriteCount + 1));
-    }
   };
 
   return(

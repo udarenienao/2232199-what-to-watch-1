@@ -124,19 +124,6 @@ export const changeFilmStatusToView = createAsyncThunk<Film, FilmStatus, {
   },
 );
 
-export const changePromoStatusToView = createAsyncThunk<Film, FilmStatus, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
-}>(
-  'data/changePromoStatusToView',
-  async ({filmId: id, status: isFavorite}, { dispatch, extra: api}) => {
-    const {data} = await api.post<Film>(`${APIRoute.Favorite}/${id}/${isFavorite}`);
-
-    return data;
-  },
-);
-
 export const fetchFavoriteFilmsAction = createAsyncThunk<Film[], undefined, {
   dispatch: AppDispatch,
   state: State,
