@@ -47,10 +47,6 @@ export const mainData = createSlice({
         CARDS_PER_STEP;
     },
 
-    setIsDataLoaded: (state, action) => {
-      state.isDataLoaded = action.payload;
-    },
-
     setFavoriteCount: (state, action) => {
       state.favoriteCount = action.payload;
     }
@@ -90,6 +86,5 @@ export const {
   resetMainScreen,
   changeGenre,
   increaseCardCount,
-  setIsDataLoaded,
   setFavoriteCount
 } = mainData.actions;
