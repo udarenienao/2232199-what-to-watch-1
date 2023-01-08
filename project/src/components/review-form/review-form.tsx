@@ -1,8 +1,9 @@
 import React, {ChangeEvent, SyntheticEvent, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {postComment} from '../../store/api-actions';
 import {UserComment} from '../../types/user-comment';
+import {APIRoute} from '../../const';
 
 function ReviewForm(): JSX.Element{
   const id = Number(useParams().id);
@@ -15,6 +16,7 @@ function ReviewForm(): JSX.Element{
   const [isDisabled, setIsDisabled] = useState(true);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const reviewTextChangeHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
@@ -43,6 +45,7 @@ function ReviewForm(): JSX.Element{
 
   const onSubmit = (commentData: UserComment) => {
     dispatch(postComment(commentData));
+    navigate(`${APIRoute.Films}/${id}`);
   };
 
   return (

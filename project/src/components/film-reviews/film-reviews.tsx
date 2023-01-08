@@ -1,4 +1,5 @@
 import {Comment} from '../../types/comment';
+import {formatDate} from '../../utils/date';
 
 type ReviewsProps = {
   reviews: Comment[]
@@ -19,7 +20,7 @@ function FilmReviews({ reviews }: ReviewsProps): JSX.Element {
                   className="review__date"
                   dateTime={review.date}
                 >
-                  {review.date}
+                  {formatDate(review.date)}
                 </time>
               </footer>
             </blockquote>

@@ -106,8 +106,6 @@ export const postComment = createAsyncThunk<void, UserComment, {
   'data/postCommentById',
   async ({comment, rating, filmId}, {dispatch, extra: api}) => {
     await api.post<UserComment>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
-    const navigate = useNavigate();
-    navigate(`${APIRoute.Films}/${filmId}`);
   },
 );
 

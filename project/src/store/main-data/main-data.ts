@@ -82,6 +82,7 @@ export const mainData = createSlice({
         state.isDataLoaded = false;
       })
       .addCase(changeFilmStatusToView.fulfilled, (state, action) => {
+        state.promo = action.payload;
         if (action.payload.isFavorite) {
           state.favoriteCount = state.favoriteCount + 1;
         } else {

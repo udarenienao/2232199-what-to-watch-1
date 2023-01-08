@@ -8,7 +8,7 @@ import ShowMore from '../../components/show-more/show-more';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {AuthorizationStatus} from '../../const';
-import {fetchFavoriteFilmsAction} from '../../store/api-actions';
+import {fetchFavoriteFilmsAction, fetchPromoAction} from '../../store/api-actions';
 import {getCardCount, getFilteredFilms, getPromo} from '../../store/main-data/selectors';
 import UserBlock from '../../components/user-block/user-block';
 import FilmCardButtons from '../../components/film-card-buttons/film-card-buttons';
@@ -19,6 +19,7 @@ function Main(): JSX.Element{
   const authStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
+    dispatch(fetchPromoAction);
     if (authStatus === AuthorizationStatus.Auth) {
       dispatch(fetchFavoriteFilmsAction());
     }
