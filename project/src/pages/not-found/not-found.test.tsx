@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import NotFound from './not-found';
 import {BrowserRouter} from 'react-router-dom';
 
-describe('Component: NotFoundScreen', () => {
+describe('NotFound', () => {
   it('should render correctly', () => {
 
     render(
