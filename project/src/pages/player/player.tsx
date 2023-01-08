@@ -45,10 +45,6 @@ function Player(): JSX.Element{
     }
   }, [playing]);
 
-  if (!film) {
-    return <Navigate to={'/notfound'}/>;
-  }
-
   if (isFilmLoadingStatus) {
     return <Loading />;
   }

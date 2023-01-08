@@ -56,7 +56,7 @@ function ReviewForm(): JSX.Element{
             {Array.from({ length: 10 }, (_, i) => i + 1)
               .reverse()
               .map((number) => (
-                <>
+                <React.Fragment key={number}>
                   <input
                     className='rating__input'
                     id={`star-${number}`}
@@ -68,7 +68,7 @@ function ReviewForm(): JSX.Element{
                   <label className='rating__label' htmlFor={`star-${number}`}>
                     {`Rating ${number}`}
                   </label>
-                </>
+                </React.Fragment>
               ))}
           </div>
         </div>
