@@ -9,6 +9,7 @@ function ShowMoreButton(): JSX.Element {
       <button
         className="catalog__button"
         type="button"
+        data-testid='show-more-button'
         onClick={ (evt) => {
           dispatch(increaseCardCount());
         }}

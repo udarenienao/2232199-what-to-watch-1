@@ -32,6 +32,7 @@ function SmallFilmCard({id, title, videoUrl, previewImage}: SmallFilmCardProps):
         <Link
           to={`/films/${id}`}
           className='small-film-card__link'
+          data-testid='film-link'
           onClick={() => (dispatch(resetMainScreen()))}
         >
           {title}

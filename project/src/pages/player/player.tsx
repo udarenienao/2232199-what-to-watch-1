@@ -45,6 +45,10 @@ function Player(): JSX.Element{
     }
   }, [playing]);
 
+  if (!film) {
+    return <Navigate to={'/notfound'}/>;
+  }
+
   if (isFilmLoadingStatus) {
     return <Loading />;
   }
@@ -113,6 +117,7 @@ function Player(): JSX.Element{
             <button
               type="button"
               className="player__play"
+              data-testid="player-play"
               onClick={
                 async () => {
                   await player.current.play();
