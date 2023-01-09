@@ -1,3 +1,4 @@
+import React from 'react';
 import { Film } from '../../types/film';
 
 type DetailsProps = {
@@ -16,7 +17,7 @@ function FilmDetails(props: DetailsProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {film.starring.map((star) => <>{star}<br /></>)}
+            {film.starring.map((star) => <React.Fragment key={star}>{star}<br /></React.Fragment>)}
           </span>
         </p>
       </div>
