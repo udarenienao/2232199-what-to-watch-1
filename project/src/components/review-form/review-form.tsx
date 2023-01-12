@@ -4,6 +4,10 @@ import {useAppDispatch} from '../../hooks';
 import {postComment} from '../../store/api-actions';
 import {UserComment} from '../../types/user-comment';
 import {APIRoute} from '../../const';
+import {errorHandle} from '../../services/error-handle';
+
+const MAX_LEN_REVIEW = 400;
+const MIN_LEN_REVIEW = 50;
 
 function ReviewForm(): JSX.Element{
   const id = Number(useParams().id);
@@ -15,15 +19,20 @@ function ReviewForm(): JSX.Element{
 
   const [isDisabled, setIsDisabled] = useState(true);
 
+  const [isRatingFilled, setIsRatingFilled] = useState(false);
+  const [isReviewFilled, setIsReviewFilled] = useState(false);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const reviewTextChangeHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
     setReviewData({ ...reviewData, [name]: value });
-    if (evt.target.value.length > 50 && evt.target.value.length < 400) {
+    if (evt.target.value.length > MIN_LEN_REVIEW && evt.target.value.length < MAX_LEN_REVIEW) {
+      setIsReviewFilled(true);
       setIsDisabled(false);
     } else {
+      setIsReviewFilled(false);
       setIsDisabled(true);
     }
   };
@@ -32,20 +41,30 @@ function ReviewForm(): JSX.Element{
     const { name, value } = evt.target;
     setReviewData({ ...reviewData, [name]: +value });
     if (evt.target.value) {
+      setIsRatingFilled(true);
       setIsDisabled(false);
     } else {
+      setIsRatingFilled(false);
       setIsDisabled(true);
     }
   };
 
   const submitHandler = (evt: SyntheticEvent) => {
     evt.preventDefault();
+    setIsDisabled(true);
     onSubmit({comment: reviewData.review, rating: reviewData.rating, filmId: id.toString()});
   };
 
   const onSubmit = (commentData: UserComment) => {
-    dispatch(postComment(commentData));
-    navigate(`${APIRoute.Films}/${id}`);
+    dispatch(postComment(commentData))
+      .then(() => {
+        setIsDisabled(false);
+        navigate(`${APIRoute.Films}/${id}`);
+      })
+      .catch((err) => {
+        setIsDisabled(false);
+        errorHandle(`Can't post a form: ${err.message}`);
+      });
   };
 
   return (
@@ -76,7 +95,7 @@ function ReviewForm(): JSX.Element{
         <div className='add-review__text'>
           <textarea
             className='add-review__textarea'
-            name='review-text'
+            name='review'
             id='review-text'
             placeholder='Review text'
             onChange={reviewTextChangeHandler}
@@ -86,7 +105,7 @@ function ReviewForm(): JSX.Element{
             <button
               className='add-review__btn'
               type='submit'
-              disabled={isDisabled}
+              disabled={isDisabled || !isRatingFilled || !isReviewFilled}
             >
               Post
             </button>

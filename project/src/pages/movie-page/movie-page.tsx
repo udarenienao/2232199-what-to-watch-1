@@ -55,7 +55,7 @@ function MoviePage(): JSX.Element{
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film!.backgroundImage} alt={film!.name}/>
+            <img src={film?.backgroundImage} alt={film?.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -67,13 +67,13 @@ function MoviePage(): JSX.Element{
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film!.name}</h2>
+              <h2 className="film-card__title">{film?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{film!.genre}</span>
-                <span className="film-card__year">{film!.released}</span>
+                <span className="film-card__genre">{film?.genre}</span>
+                <span className="film-card__year">{film?.released}</span>
               </p>
 
-              <FilmCardButtons film={film!} authStatus={authStatus}/>
+              <FilmCardButtons film={film!} authStatus={authStatus} isMainPage={false}/>
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@ function MoviePage(): JSX.Element{
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film!.posterImage} alt={film!.name}
+              <img src={film?.posterImage} alt={film?.name}
                 width="218" height="327"
               />
             </div>
@@ -93,7 +93,7 @@ function MoviePage(): JSX.Element{
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <Catalog films={similar}/>
+          <Catalog films={similar.slice(0,4)}/>
         </section>
 
         <Footer/>

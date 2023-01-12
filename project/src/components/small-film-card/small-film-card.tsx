@@ -16,8 +16,11 @@ function SmallFilmCard({id, title, videoUrl, previewImage}: SmallFilmCardProps):
   const [isPointed, setIsPointed] = useState(false);
 
   return (
-    <article
-      className='small-film-card catalog__films-card'
+    <Link
+      to={`/films/${id}`}
+      className='small-film-card catalog__films-card small-film-card__link'
+      data-testid='film-link'
+      onClick={() => (dispatch(resetMainScreen()))}
       onMouseEnter={() => setIsPointed(true)}
       onMouseLeave={() => setIsPointed(false)}
     >
@@ -29,16 +32,9 @@ function SmallFilmCard({id, title, videoUrl, previewImage}: SmallFilmCardProps):
         }
       </div>
       <h3 className='small-film-card__title'>
-        <Link
-          to={`/films/${id}`}
-          className='small-film-card__link'
-          data-testid='film-link'
-          onClick={() => (dispatch(resetMainScreen()))}
-        >
-          {title}
-        </Link>
+        {title}
       </h3>
-    </article>
+    </Link>
   );
 }
 

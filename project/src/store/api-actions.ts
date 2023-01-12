@@ -8,7 +8,6 @@ import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';
 import {Comment} from '../types/comment';
 import {UserComment} from '../types/user-comment';
-import {useNavigate} from 'react-router-dom';
 import {FilmStatus} from '../types/film-status';
 import {dropAvatarURL} from '../services/avatar';
 
@@ -105,7 +104,7 @@ export const postComment = createAsyncThunk<void, UserComment, {
 }>(
   'data/postCommentById',
   async ({comment, rating, filmId}, {dispatch, extra: api}) => {
-    await api.post<UserComment>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
+    await api.post(`${APIRoute.Comments}/${filmId}`, {comment, rating});
   },
 );
 

@@ -1,5 +1,4 @@
 import React, {useRef, useState} from 'react';
-
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import {useAppDispatch, useAppSelector} from '../../hooks';
@@ -9,6 +8,7 @@ import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {Navigate} from 'react-router-dom';
 import {AuthorizationStatus} from '../../const';
 import {resetMainScreen} from '../../store/main-data/main-data';
+import {errorHandle} from '../../services/error-handle';
 
 function SignIn(): JSX.Element{
   const authStatus = useAppSelector(getAuthorizationStatus);
@@ -20,7 +20,8 @@ function SignIn(): JSX.Element{
 
   const onSubmit = (authData: AuthData) => {
     dispatch(resetMainScreen());
-    dispatch(loginAction(authData));
+    dispatch(loginAction(authData))
+      .catch((err) =>errorHandle(`Something went wrong. ${err.message}`));
   };
 
   const checkEmail = (email: string): boolean => {

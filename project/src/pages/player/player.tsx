@@ -40,10 +40,15 @@ function Player(): JSX.Element{
   }
 
   useEffect(() => {
-    if(player.current) {
+    let isMounted = true;
+    if(isMounted && player.current) {
       setVideoTime(player.current.duration);
     }
-  }, [playing]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [player]);
 
   if (!film) {
     return <Navigate to={'/notfound'}/>;

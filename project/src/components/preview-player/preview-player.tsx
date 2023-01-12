@@ -1,5 +1,7 @@
 import {useEffect, useRef} from 'react';
 
+const TIME_TO_TIMEOUT = 1000;
+
 type PreviewPlayerProps = {
   image: string,
   previewVideo: string,
@@ -11,7 +13,7 @@ function PreviewPlayer ({image, previewVideo}: PreviewPlayerProps): JSX.Element 
   useEffect(() => {
     const delay: NodeJS.Timeout = setTimeout(
       () => videoRef.current?.play(),
-      1000);
+      TIME_TO_TIMEOUT);
 
     return () => clearTimeout(delay);
   });

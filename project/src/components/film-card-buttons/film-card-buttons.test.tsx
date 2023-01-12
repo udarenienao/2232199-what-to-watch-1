@@ -34,7 +34,7 @@ describe('film card buttons tests', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <FilmCardButtons film={mockFilm} authStatus={AuthorizationStatus.NoAuth} />
+          <FilmCardButtons film={mockFilm} authStatus={AuthorizationStatus.NoAuth} isMainPage={false} />
         </MemoryRouter>
       </Provider>
     );
@@ -56,7 +56,7 @@ describe('film card buttons tests', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <FilmCardButtons film={mockFilm} authStatus={AuthorizationStatus.Auth} />
+          <FilmCardButtons film={mockFilm} authStatus={AuthorizationStatus.Auth} isMainPage={false}/>
         </MemoryRouter>
       </Provider>
     );
@@ -64,5 +64,26 @@ describe('film card buttons tests', () => {
     expect(screen.getByText(/Play/i)).toBeInTheDocument();
     expect(screen.getByText(/My List/i)).toBeInTheDocument();
     expect(screen.getByText(/Add Review/i)).toBeInTheDocument();
+  });
+
+  it('should render correctly when main', () => {
+    const store = mockStore({
+      USER:{
+        authorizationStatus:AuthorizationStatus.Auth
+      },
+      MAIN: {
+        favoriteCount: 0
+      }
+    });
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <FilmCardButtons film={mockFilm} authStatus={AuthorizationStatus.Auth} isMainPage/>
+        </MemoryRouter>
+      </Provider>
+    );
+
+    expect(screen.getByText(/Play/i)).toBeInTheDocument();
+    expect(screen.getByText(/My List/i)).toBeInTheDocument();
   });
 });

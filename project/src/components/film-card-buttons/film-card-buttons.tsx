@@ -9,10 +9,11 @@ import {getFavoriteCount} from '../../store/main-data/selectors';
 
 type FilmCardButtonsProps ={
   film: Film,
-  authStatus: AuthorizationStatus
+  authStatus: AuthorizationStatus,
+  isMainPage: boolean
 }
 
-function FilmCardButtons({film, authStatus}: FilmCardButtonsProps): JSX.Element{
+function FilmCardButtons({film, authStatus, isMainPage}: FilmCardButtonsProps): JSX.Element{
   const favoriteCount = useAppSelector(getFavoriteCount);
   const dispatch = useAppDispatch();
 
@@ -56,7 +57,7 @@ function FilmCardButtons({film, authStatus}: FilmCardButtonsProps): JSX.Element{
           <span className="film-card__count">{favoriteCount}</span>
         </button>
       }
-      { authStatus === AuthorizationStatus.Auth &&
+      { authStatus === AuthorizationStatus.Auth && !isMainPage &&
         <Link to={'review'} className="btn film-card__button" type='button'>Add review</Link>}
     </div>
   );

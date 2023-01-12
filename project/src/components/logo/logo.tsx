@@ -7,7 +7,7 @@ function Logo(): JSX.Element {
   return (
     <div className='logo'>
       <Link
-        className='logo__link logo__link--light'
+        className='logo__link'
         to='/'
         onClick={
           () => {

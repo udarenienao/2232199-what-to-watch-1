@@ -4,11 +4,11 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { films } from '../../mocks/films';
 import { createAPI } from '../../services/api';
 import Main from './main';
 import {State} from '../../types/state';
 import {AuthorizationStatus} from '../../const';
+import {films} from '../../mocks/films';
 
 jest.mock('../../services/error-handle.ts');
 const api = createAPI();
@@ -45,6 +45,7 @@ describe('main tests', () => {
     );
 
     expect(screen.queryByText(/My List/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Add Review/i)).not.toBeInTheDocument();
   });
 
   it('should render correctly when auth', () => {
@@ -69,5 +70,6 @@ describe('main tests', () => {
     );
 
     expect(screen.getByText(/My List/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Add Review/i)).not.toBeInTheDocument();
   });
 });

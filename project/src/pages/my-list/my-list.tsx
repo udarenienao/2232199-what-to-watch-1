@@ -27,11 +27,11 @@ function MyList(): JSX.Element{
   if (isDataLoaded) {
     return <Loading />;
   }
+
   return (
     <div className='user-page'>
       <header className='page-header user-page__head'>
         <Logo/>
-
         <h1 className='page-title user-page__title'>My list <span className='user-page__film-count'>{films.length}</span></h1>
         <UserBlock/>
       </header>
@@ -47,7 +47,6 @@ function MyList(): JSX.Element{
             videoUrl={film.videoLink}
           />))}
       </section>
-
       <Footer/>
     </div>
   );

@@ -60,7 +60,7 @@ function Main(): JSX.Element{
                 <span className='film-card__year'>{promoMovie.released}</span>
               </p>
 
-              <FilmCardButtons film={promoMovie} authStatus={authStatus}/>
+              <FilmCardButtons film={promoMovie} authStatus={authStatus} isMainPage/>
             </div>
           </div>
         </div>
